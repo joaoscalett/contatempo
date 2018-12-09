@@ -1,9 +1,10 @@
 import React from 'react';
+import Bar from './Bar';
 import withAuth from '../hocs/withAuth';
 
 export default withAuth(props =>
   <div>
-    <h2>AppBar</h2>
+    <Bar />
     {props.children}
   </div>
 )
