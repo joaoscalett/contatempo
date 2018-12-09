@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import React, { Component } from 'react';
+import React from 'react';
+import { Redirect } from '@reach/router';
 import { withTracker } from 'meteor/react-meteor-data';
 
 function login() {
@@ -8,26 +9,22 @@ function login() {
     error => {console.log(Meteor.user().profile.name)}
   );
 }
-class Info extends Component {
-  render() {
+
+function LoginPage(props) {
     return (
       <div>
-        { this.props.user ? <button onClick={() => Meteor.logout()}>Logout</button> :
+        { props.loading ? <h2>Loading...</h2> : ''}
+        { props.user ? <Redirect to="/now" noThrow />:
         <button onClick={() => login()}>Login</button>
         }
-        <h1>
-        {
-          Meteor.user() ? Meteor.user().profile.name : 'Click login'
-        }
-        </h1>
       </div>
     );
-  }
 }
 
-export default InfoContainer = withTracker(() => {
+export default LoginPageContainer = withTracker(() => {
   return {
+    loading: Meteor.loggingIn(),
     user: Meteor.user(),
   }
-})(Info);
+})(LoginPage);
 
