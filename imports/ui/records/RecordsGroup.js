@@ -21,9 +21,10 @@ const Record = () => (
 )
 
 const TotalAndDate = ({ total, date }) => (
-  <div
+  <Paper
+    square
     style={{
-      marginBottom: '0.5rem',
+      padding: '1rem',
       display: 'flex',
       alignItems: 'baseline',
       justifyContent: 'space-between',
@@ -33,18 +34,25 @@ const TotalAndDate = ({ total, date }) => (
     <Typography color="textSecondary" style={{ fontSize: '1rem' }}>
       {date}
     </Typography>
-  </div>
+  </Paper>
 )
 
 const RecordsGroup = ({ records }) => (
-  <Paper square style={{ padding: '0.5rem' }}>
+  <Paper square elevation={0}>
     <TotalAndDate total="08:33" date="Seg, 12 jul" />
     <Divider />
     {[0, 1, 2, 3].map(i => (
-      <div key={i} style={{ padding: '1rem 0.75rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div key={i}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '1rem',
+          }}
+        >
           <Record />
         </div>
+        <Divider />
       </div>
     ))}
   </Paper>
