@@ -5,6 +5,7 @@
     "start": "meteor run --settings settings.json",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "prettier": "prettier --write \"imports/ui/records/RecordsGroup.js\"",
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
@@ -17,11 +18,29 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
+  "devDependencies": {
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4"
+  },
   "meteor": {
     "mainModule": {
       "client": "client/main.js",
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{js,json,css,md}": [
+        "prettier --write",
+        "git add"
+      ]
+    }
   }
 }
