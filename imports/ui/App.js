@@ -1,13 +1,13 @@
-import React from 'react';
-import { Router, Redirect } from '@reach/router';
-import { createMuiTheme } from "@material-ui/core/styles";
-import { ThemeProvider } from "@material-ui/styles";
-import Layout from './Layout.js';
-import RecordsPage from './pages/RecordsPage';
-import NotFoundPage from './pages/NotFoundPage';
-import LoginPage from './pages/LoginPage.js';
+import React from 'react'
+import { Router, Redirect } from '@reach/router'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
+import Layout from './Layout.js'
+import RecordsPage from './pages/RecordsPage'
+import NotFoundPage from './pages/NotFoundPage'
+import LoginPage from './pages/LoginPage.js'
 
-const theme = createMuiTheme({ typography: { useNextVariants: true } });
+const theme = createMuiTheme({ typography: { useNextVariants: true } })
 
 const App = () => (
   <div>
@@ -22,6 +22,6 @@ const App = () => (
       </Router>
     </ThemeProvider>
   </div>
-);
+)
 
-export default App;
+export default App

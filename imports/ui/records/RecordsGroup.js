@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
+import RecordDetails from './RecordDetails'
 
 const RecordDate = () => <Typography color="textSecondary">18/03</Typography>
 
@@ -37,25 +38,37 @@ const TotalAndDate = ({ total, date }) => (
   </Paper>
 )
 
-const RecordsGroup = ({ records }) => (
-  <Paper square elevation={0}>
-    <TotalAndDate total="08:33" date="Seg, 12 jul" />
-    <Divider />
-    {[0, 1, 2, 3].map(i => (
-      <div key={i}>
+const RecordsGroup = ({ records }) => {
+  const [open, setOpen] = React.useState(false)
+
+  return (
+    <Paper square elevation={0}>
+      <TotalAndDate total="08:33" date="Seg, 12 jul" />
+      <Divider />
+      {[0, 1, 2, 3].map(i => (
         <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '1rem',
+          role="button"
+          key={i}
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            setOpen(true)
           }}
         >
-          <Record />
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '1rem',
+            }}
+          >
+            <Record />
+          </div>
+          <Divider />
         </div>
-        <Divider />
-      </div>
-    ))}
-  </Paper>
-)
+      ))}
+      <RecordDetails open={open} onClose={() => setOpen(false)} />
+    </Paper>
+  )
+}
 
 export default RecordsGroup
