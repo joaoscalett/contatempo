@@ -3,7 +3,7 @@ import { Router, Redirect } from '@reach/router'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 import Layout from './Layout.js'
-import RecordsPage from './pages/RecordsPage'
+import HistoryPage from './pages/HistoryPage'
 import NotFoundPage from './pages/NotFoundPage'
 import LoginPage from './pages/LoginPage.js'
 
@@ -14,9 +14,9 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Router>
         <LoginPage path="/login" />
-        <Redirect from="/" to="records" noThrow />
+        <Redirect from="/" to="history" noThrow />
         <Layout path="/">
-          <RecordsPage path="records" />
+          <HistoryPage path="history" />
           <NotFoundPage default />
         </Layout>
       </Router>
