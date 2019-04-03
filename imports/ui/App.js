@@ -14,7 +14,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Router>
         <LoginPage path="/login" />
-        <Redirect from="/" to="history" noThrow />
+        <Redirect from="/" to="/history" noThrow />
         <Layout path="/">
           <HistoryPage path="history" />
           <NotFoundPage default />

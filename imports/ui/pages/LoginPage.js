@@ -1,19 +1,18 @@
 import { Meteor } from 'meteor/meteor'
 import React from 'react'
 import { Redirect } from '@reach/router'
-import { withTracker } from 'meteor/react-meteor-data'
+import withUser from '../../hocs/withUser'
 
 function login() {
-  Meteor.loginWithGoogle({ requestPermissions: ['email'] }, error => {
-    console.log(Meteor.user().profile.name)
-  })
+  Meteor.loginWithGoogle({ requestPermissions: ['email'] })
 }
 
 function LoginPage(props) {
   return (
     <div>
-      {props.loading ? <h2>Loading...</h2> : ''}
-      {props.user ? (
+      {props.loggingIn ? (
+        <h2>Loading...</h2>
+      ) : props.user ? (
         <Redirect to="/home" noThrow />
       ) : (
         <button onClick={() => login()}>Login</button>
@@ -22,9 +21,5 @@ function LoginPage(props) {
   )
 }
 
-export default (LoginPageContainer = withTracker(() => {
-  return {
-    loading: Meteor.loggingIn(),
-    user: Meteor.user(),
-  }
-})(LoginPage))
+const LoginPageWithUser = withUser(LoginPage)
+export default LoginPageWithUser

@@ -1,7 +1,6 @@
 import React from 'react'
 import Bar from './Bar'
 import Navigation from './Navigation'
-import withAuth from '../hocs/withAuth'
 
 const Layout = props => (
   <div style={{ backgroundColor: '#f1f1f1', maxWidth: 600, margin: '0 auto' }}>
@@ -12,4 +11,3 @@ const Layout = props => (
 )
 
 export default Layout
-// export default withAuth(Layout)
