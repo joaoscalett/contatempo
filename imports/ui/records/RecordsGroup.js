@@ -23,6 +23,7 @@ const Record = () => (
 
 const TotalAndDate = ({ total, date }) => (
   <Paper
+    elevation={0}
     square
     style={{
       padding: '1rem',

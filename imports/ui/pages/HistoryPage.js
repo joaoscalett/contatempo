@@ -26,8 +26,8 @@ const HistoryPage = () =>
     20,
     21,
   ].map(n => (
-    <div key={n} style={{ margin: '0.75rem' }}>
-      <RecordsGroup />
+    <div key={n} style={{ marginBottom: '0.75rem' }}>
+      <RecordsGroup key={n} />
     </div>
   ))
 

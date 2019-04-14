@@ -36,7 +36,7 @@ function Navigation() {
         icon={<RestoreIcon />}
       />
       <BottomNavigationAction
-        label="Config."
+        label="Settings"
         value="/settings"
         icon={<SettingsIcon />}
       />
