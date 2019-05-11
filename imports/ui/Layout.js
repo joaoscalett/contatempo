@@ -1,6 +1,7 @@
 import React from 'react'
 import Bar from './Bar'
 import Navigation from './Navigation'
+import Fixed from './Fixed'
 import CurrentRecord from './records/CurrentRecord'
 
 const MARGIN = 12
@@ -25,7 +26,9 @@ const Layout = props => (
       </div>
       {props.children}
     </div>
-    <Navigation />
+    <Fixed bottom={0}>
+      <Navigation />
+    </Fixed>
   </div>
 )
 
