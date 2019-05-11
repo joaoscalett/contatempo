@@ -3,48 +3,10 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Paper from '@material-ui/core/Paper'
 import Divider from '@material-ui/core/Divider'
+import Record from './Record'
 import RecordDetails from './RecordDetails'
 import Button from '@material-ui/core/Button'
 import Dialog from '../Dialog'
-
-const RecordDate = () => <Typography color="textSecondary">18/03</Typography>
-
-const timeStyle = { fontSize: '1.25rem' }
-const RecordTime = ({ time }) => (
-  <Typography style={timeStyle}>{time}</Typography>
-)
-
-function Record({ record }) {
-  const [recordDetailsOpen, setRecordDetailsOpen] = React.useState(false)
-  return (
-    <>
-      <div
-        role="button"
-        key={record.id}
-        style={{
-          cursor: 'pointer',
-
-          display: 'flex',
-          alignItems: 'center',
-          padding: '1rem',
-        }}
-        onClick={() => setRecordDetailsOpen(true)}
-      >
-        <div style={{ margin: '0 0.75rem' }}>
-          <RecordTime time={record.begin} />
-        </div>
-        <div style={{ margin: '0 0.75rem' }}>
-          <RecordTime time={record.end} />
-        </div>
-      </div>
-      <RecordDetails
-        record={record}
-        open={recordDetailsOpen}
-        onClose={() => setRecordDetailsOpen(false)}
-      />
-    </>
-  )
-}
 
 const GroupHeader = ({ total, date }) => (
   <Paper
@@ -64,15 +26,17 @@ const GroupHeader = ({ total, date }) => (
   </Paper>
 )
 
-const RecordsGroup = ({ records }) => {
+function RecordsGroup({ records }) {
   return (
     <Paper square elevation={0}>
       <GroupHeader total="08:33" date="Seg, 12 jul" />
       <Divider />
-      {records.map(record => (
+      {records.map((record, i) => (
         <div key={record.id}>
-          <Record record={record} />
-          <Divider />
+          <div style={{ padding: '0 1.5rem' }}>
+            <Record record={record} />
+          </div>
+          {i < records.length - 1 ? <Divider /> : null}
         </div>
       ))}
     </Paper>
