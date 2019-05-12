@@ -3,20 +3,20 @@ import RecordsGroup from '../records/RecordsGroup'
 
 const data = [
   [
-    { id: 1, begin: '2017-05-24T10:30', end: '13:00' },
-    { id: 2, begin: '2017-05-24T14:26', end: '17:59' },
+    { id: 1, begin: new Date(), end: new Date() },
+    { id: 2, begin: new Date(), end: new Date() },
   ],
   [
-    { id: 3, begin: '2017-05-25T03:59', end: '13:00' },
-    { id: 4, begin: '2017-05-25T04:01', end: '17:59' },
-    { id: 5, begin: '2017-05-25T11:59', end: '13:00' },
-    { id: 6, begin: '2017-05-25T14:35', end: '17:59' },
+    { id: 3, begin: new Date(), end: new Date() },
+    { id: 4, begin: new Date(), end: new Date() },
+    { id: 5, begin: new Date(), end: new Date() },
+    { id: 6, begin: new Date(), end: new Date() },
   ],
   [
-    { id: 7, begin: '2017-05-25T03:59', end: '13:00' },
-    { id: 8, begin: '2017-05-25T04:01', end: '17:59' },
-    { id: 9, begin: '2017-05-25T11:59', end: '13:00' },
-    { id: 10, begin: '2017-05-25T14:35', end: '17:59' },
+    { id: 7, begin: new Date(), end: new Date() },
+    { id: 8, begin: new Date(), end: new Date() },
+    { id: 9, begin: new Date(), end: new Date() },
+    { id: 10, begin: new Date(), end: new Date() },
   ],
 ]
 const HistoryPage = () =>

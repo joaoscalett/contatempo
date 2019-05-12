@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 
 const timeStyle = { fontSize: '1.25rem' }
 const RecordTime = ({ time }) => (
-  <Typography style={timeStyle}>{time}</Typography>
+  <Typography style={timeStyle}>{time.toTimeString().slice(0, 5)}</Typography>
 )
 
 function Record({ record }) {
@@ -17,16 +17,27 @@ function Record({ record }) {
         style={{
           cursor: 'pointer',
           display: 'flex',
+          minWidth: 0,
           alignItems: 'center',
           padding: '1rem 0',
         }}
         onClick={() => setRecordDetailsOpen(true)}
       >
-        <div style={{ marginRight: '0.75rem' }}>
+        <div>
           <RecordTime time={record.begin} />
         </div>
         <div style={{ marginLeft: '0.75rem' }}>
           <RecordTime time={record.end} />
+        </div>
+        <div
+          style={{
+            marginLeft: '0.75rem',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          fazendo trabalho enorme
         </div>
       </div>
       <RecordDetails

@@ -26,9 +26,20 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+function toDatetimeLocal(date) {
+  const ten = i => (i < 10 ? '0' : '') + i,
+    YYYY = date.getFullYear(),
+    MM = ten(date.getMonth() + 1),
+    DD = ten(date.getDate()),
+    HH = ten(date.getHours()),
+    II = ten(date.getMinutes())
+  return YYYY + '-' + MM + '-' + DD + 'T' + HH + ':' + II
+}
+
 function RecordDetails({ record, open, onClose }) {
   const classes = useStyles()
   const [begin, setBegin] = useState(record.begin)
+  const [end, setEnd] = useState(record.end)
 
   return (
     <Dialog
@@ -36,30 +47,34 @@ function RecordDetails({ record, open, onClose }) {
       onClose={onClose}
       onSave={() => {
         console.log(`saving record with new begin = ${begin}`)
+        console.log('ISOString = ', new Date(begin).toISOString())
         onClose()
       }}
     >
       <List>
         <ListItem className={classes.container}>
           <TextField
-            id="datetime-local"
             label="Inicio"
             type="datetime-local"
-            value={begin}
+            value={toDatetimeLocal(begin)}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={e => setBegin(e.target.value)}
+            onChange={e => {
+              setBegin(new Date(e.target.value))
+            }}
           />
           <TextField
-            id="datetime-local"
             label="Fim"
             type="datetime-local"
-            defaultValue="2017-05-24T10:30"
+            value={toDatetimeLocal(end)}
             className={classes.textField}
             InputLabelProps={{
               shrink: true,
+            }}
+            onChange={e => {
+              setEnd(new Date(e.target.value))
             }}
           />
         </ListItem>

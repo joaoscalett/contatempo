@@ -33,7 +33,7 @@ function RecordsGroup({ records }) {
       <Divider />
       {records.map((record, i) => (
         <div key={record.id}>
-          <div style={{ padding: '0 1.5rem' }}>
+          <div style={{ padding: '0 1rem' }}>
             <Record record={record} />
           </div>
           {i < records.length - 1 ? <Divider /> : null}

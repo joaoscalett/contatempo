@@ -14,10 +14,11 @@ function CurrentRecord() {
         padding: '0 1rem',
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'space-between',
       }}
     >
-      <Record record={{ id: 1, begin: '12:34', end: '16:57' }} />
-      <div style={{ marginLeft: 'auto' }}>
+      <Record record={{ id: 1, begin: new Date(), end: new Date() }} />
+      <div>
         <IconButton>
           <StopIcon style={{ fontSize: 32, color: red[600] }} />
         </IconButton>
