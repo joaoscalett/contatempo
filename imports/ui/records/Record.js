@@ -1,6 +1,7 @@
 import React from 'react'
 import RecordDetails from './RecordDetails'
 import Typography from '@material-ui/core/Typography'
+import LabelIcon from '@material-ui/icons/Label'
 
 const timeStyle = { fontSize: '1.25rem' }
 const RecordTime = ({ time }) => (
@@ -20,6 +21,7 @@ function Record({ record }) {
           minWidth: 0,
           alignItems: 'center',
           padding: '1rem 0',
+          flexWrap: 'wrap',
         }}
         onClick={() => setRecordDetailsOpen(true)}
       >
@@ -29,16 +31,17 @@ function Record({ record }) {
         <div style={{ marginLeft: '0.75rem' }}>
           <RecordTime time={record.end} />
         </div>
-        <div
+        <LabelIcon color="disabled" style={{ marginLeft: 'auto' }} />
+        <Typography style={{ marginLeft: '0.25rem' }}>2</Typography>
+        <Typography
           style={{
-            marginLeft: '0.75rem',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
           }}
         >
-          fazendo trabalho enorme
-        </div>
+          Here goes the description of your recorded time.
+        </Typography>
       </div>
       <RecordDetails
         record={record}
