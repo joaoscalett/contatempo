@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/styles'
+import TextField from '@material-ui/core/TextField'
+import Input from '@material-ui/core/Input'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
+import AddIcon from '@material-ui/icons/Add'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItem from '@material-ui/core/ListItem'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import List from '@material-ui/core/List'
-import Button from '@material-ui/core/Button'
 import Divider from '@material-ui/core/Divider'
-import TextField from '@material-ui/core/TextField'
+import Chip from '@material-ui/core/Chip'
 import Dialog from '../Dialog'
 
 const useStyles = makeStyles(theme => ({
@@ -36,10 +42,28 @@ function toDatetimeLocal(date) {
   return YYYY + '-' + MM + '-' + DD + 'T' + HH + ':' + II
 }
 
+const tags = [
+  { id: '1', description: 'Projeto 1' },
+  { id: '2', description: 'Outro projeto' },
+  { id: '3', description: 'Mais um projeto' },
+  { id: '4', description: 'Mais um projeto' },
+  { id: '5', description: 'Mais um projeto' },
+  { id: '6', description: 'Mais um projeto' },
+  { id: '7', description: 'Mais um projeto' },
+  { id: '8', description: 'Mais um projeto' },
+  { id: '9', description: 'Mais um projeto' },
+  { id: '10', description: 'Mais um projeto' },
+  { id: '11', description: 'Mais um projeto' },
+  { id: '12', description: 'Mais um projeto' },
+  { id: '13', description: 'Mais um projeto' },
+]
+
 function RecordDetails({ record, open, onClose }) {
   const classes = useStyles()
   const [begin, setBegin] = useState(record.begin)
   const [end, setEnd] = useState(record.end)
+  const [description, setDescription] = useState(record.description || '')
+  const [newTag, setNewTag] = useState(record.tag || '')
 
   return (
     <Dialog
@@ -54,6 +78,7 @@ function RecordDetails({ record, open, onClose }) {
       <List>
         <ListItem className={classes.container}>
           <TextField
+            variant="outlined"
             label="Inicio"
             type="datetime-local"
             value={toDatetimeLocal(begin)}
@@ -61,11 +86,10 @@ function RecordDetails({ record, open, onClose }) {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={e => {
-              setBegin(new Date(e.target.value))
-            }}
+            onChange={e => setBegin(new Date(e.target.value))}
           />
           <TextField
+            variant="outlined"
             label="Fim"
             type="datetime-local"
             value={toDatetimeLocal(end)}
@@ -73,10 +97,66 @@ function RecordDetails({ record, open, onClose }) {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={e => {
-              setEnd(new Date(e.target.value))
-            }}
+            onChange={e => setEnd(new Date(e.target.value))}
           />
+          <TextField
+            variant="outlined"
+            label="Description"
+            value={description}
+            className={classes.textField}
+            fullWidth
+            placeholder="Say what you're doing"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </ListItem>
+        <Divider />
+        <ListSubheader
+          component="div"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Input
+            value={newTag}
+            className={classes.textField}
+            placeholder="Add a tag"
+            onChange={e => setNewTag(e.target.value)}
+            style={{
+              fontWeight: 400,
+            }}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Add a tag to the record"
+                  onClick={() => {}}
+                >
+                  <AddIcon />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </ListSubheader>
+        <ListItem
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            maxHeight: '20vh',
+            overflowY: 'scroll',
+          }}
+        >
+          {tags.map(tag => (
+            <Chip
+              key={tag.id}
+              label={tag.description}
+              onDelete={() => {}}
+              style={{ margin: 4 }}
+            />
+          ))}
         </ListItem>
         <Divider />
         <ListItem className={classes.container}>
